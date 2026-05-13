@@ -38,6 +38,21 @@ open /Applications/ClaudeQuotaBar.app
 
 Open **System Settings → General → Login Items** and add `ClaudeQuotaBar`.
 
+### Fix repeated Keychain password prompts
+
+If macOS keeps asking for your Keychain password every time ClaudeQuotaBar starts, it means the app doesn't have permanent access to the Claude Code credential entries.
+
+To fix this:
+
+1. Open **Keychain Access** (Spotlight: `Cmd+Space` → "Keychain Access")
+2. Search for **`Claude Code-credentials`** — you may find several entries (with suffixes like `-2492a7d2`, `-ac05025e`, etc.)
+3. For each entry that shows **"Confirm before allowing access"**:
+   - Double-click the entry
+   - Go to the **Access Control** tab
+   - Click **+** and select `/Applications/ClaudeQuotaBar.app`
+   - Click **Save Changes** (you'll need to enter your login password once to confirm)
+4. Quit and relaunch ClaudeQuotaBar — no more prompts.
+
 ## How it works
 
 1. Reads your Claude Code OAuth token from the macOS Keychain (`Claude Code-credentials`)
